@@ -2,6 +2,7 @@ import os
 import argparse
 from .impl import KeywordExtraction
 
+
 # Exit code constantes
 EXIT_SUCCESS = 0;
 EXIT_FAILURE = 84;
@@ -26,6 +27,7 @@ def main(**kwargs):
     return EXIT_SUCCESS;
 
 
+'''
 if __name__ == '__main__':
     # Command line arguments parsing
     parser = argparse.ArgumentParser();
@@ -36,5 +38,5 @@ if __name__ == '__main__':
     # execution of main function
     exitcode = main(impl=args.impl, url=args.url);
     os.sys.exit(exitcode);
-
+'''
 

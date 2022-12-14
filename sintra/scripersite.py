@@ -71,6 +71,13 @@ class WebPage(bs4.BeautifulSoup):
         wb.__setattr__('_layer', self._layer + 1);
         self._subwps.append(wb);
         return wb;
+    
+    def get_text(self):
+        text = super(WebPage, self).get_text();
+        if self._subwps:
+            for w in self._subwps:
+                text += '\n' + w.get_text();
+        return text;
 
     def __str__(self):
         """ Function of representation of a WEB page in string. """
@@ -85,7 +92,8 @@ class Navigation(th.Thread):
         super(Navigation, self).__init__(*args, **kwargs);
         self._wps  = {};
         self._curl = '';
-        self._levn = levn;     ''' Define the level of the navigation on web page '''
+        self._levn = levn if levn is not None\
+            else 0;  ''' Define the level of the navigation on web page '''
 
     @property
     def url(self):
@@ -169,8 +177,8 @@ class WSNavigator:
 
 
 if __name__ == '__main__':
-    url = URL('https://www.geeksforgeeks.org/python-web-scraping-tutorial/');
-    # url = URL('https://beautiful-soup-4.readthedocs.io/en/latest/');
+    # url = URL('https://www.geeksforgeeks.org/python-web-scraping-tutorial/');
+    url = URL('https://beautiful-soup-4.readthedocs.io/en/latest/');
     # url = URL('https://duckduckgo.com/?q=BeautifulSoup+document&ia=web/');
     nav = Navigation(levn=0);
     wbp = nav(url);
@@ -179,9 +187,10 @@ if __name__ == '__main__':
     #     print(line.text);
     print("\n");
     print(INFO + "{} WEB PAGE(S) SCRAPPED !".format(len(nav.webpages)));
+    print(wbp.get_text());
     # print(wbp.url, [w.url for w in wbp.sub_web_pages]);
-    for w in wbp.sub_web_pages:
-        print(INFO + "{} WEB PAGE(S) SCRAPPED !".format(len(w.sub_web_pages)));
+    # for w in wbp.sub_web_pages:
+    #    print(INFO + "{} WEB PAGE(S) SCRAPPED !".format(len(w.sub_web_pages)));
     
     
 

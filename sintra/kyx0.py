@@ -34,7 +34,7 @@ NLP      = None;
 MTC      = None;
 ALP      = None;
 '''
-SBT_AVR  = 1.5;
+SBT_AVR  = 4;
 
 
 class Lang(enum.Enum):
@@ -96,12 +96,12 @@ class KExtractor:
         self._y    = None;                                      """ Represent the previous result of the previous enter """
 
     @property
-    def ratio(self):
+    def sensibility(self):
         """ Return the defined ratio """
         return self._sbt;
 
-    @ratio.setter
-    def ratio(self, value):
+    @sensibility.setter
+    def sensibility(self, value):
         """ Set a value of the ratio for the next predictions """
         self._sbt = value; 
 

@@ -12,7 +12,7 @@ sudo apt install python3
 sudo apt install python3-pip
 ```
 You have to make sure of the version of python that is installed. The version of python
-used is `python 3.9.12`. You can also use version `3.8`.
+used is `python 3.8.10`.
 
 
 ### Install venv
@@ -97,7 +97,7 @@ optional arguments:
 For example: 
 - You want to extract the keywords from a web page :
 
-```
+```sh
 python main.py getkw https://beautiful-soup-4.readthedocs.io/en/latest/
 ```
 
@@ -124,4 +124,46 @@ This command give :
        8	                          parser	      81
        9	                       attribute	      69
 ```
+
+Second proposition:
+
+```sh
+python main.py getkw https://beautiful-soup-4.readthedocs.io/en/latest/ --lev 1
+```
+
+Result :
+
+```
+[ INFO ]  Navigation level : 1
+[ INFO ]  Navigation to https://beautiful-soup-4.readthedocs.io/en/latest/ ...
+[ OK ]    STATUS CODE - 200 | https://beautiful-soup-4.readthedocs.io/en/latest/ is scrapped.
+[ ERRO ]  Error message: Invalid URL '_sources/index.rst.txt': No scheme supplied. Perhaps you meant http://_sources/index.rst.txt?
+[ OK ]    STATUS CODE - 200 | http://www.crummy.com/software/BeautifulSoup/ is scrapped.
+[ OK ]    STATUS CODE - 200 | http://www.crummy.com/software/BeautifulSoup/bs3/documentation.html is scrapped.
+[ OK ]    STATUS CODE - 200 | https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/ is scrapped.
+
+...
+
+[ INFO ]  -> Language set to Lang.EN
+[ INFO ]  -> Sensibility set to 4
+[ INFO ]  Keyword extracting ... 
+[ SUCC ]  7 keywords found!
+
+   INDEX	                        KEYWORDS	     OCC
+       1	                             tag	    1560
+       2	                            soup	    1259
+       3	                       beautiful	     850
+       4	                  beautiful soup	     766
+       5	                   beautifulsoup	     613
+       6	                            html	     604
+       7	                        document	     505
+```
+
+1. The `--lev` parameter allows to specify to the program to scrape the web page whose URL is provided as argument, 
+but also the web pages indexed by all the links of the `<a/>` tags that are there.
+
+2. The `--sen` parameter sets the sensitivity of the keyword extraction engine. 
+Its value is a real number between `]1; +inf[`.
+
+
 

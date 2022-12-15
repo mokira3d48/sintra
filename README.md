@@ -67,6 +67,12 @@ python -m spacy download fr_core_news_md
 ```
 
 ## Using
+You can use the command line interface to test the functions of the package or 
+for other personal use, or use the python programming interface 
+to integrate its features in your python projects.
+
+### Command line interface
+The following command displays the help on the available options.
 
 ```sh
 python main.py --help

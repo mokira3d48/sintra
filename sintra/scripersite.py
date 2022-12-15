@@ -1,25 +1,26 @@
 import threading as th
 import requests
 import bs4
-
-
-# constantes d'etat
-ERRO = '[ \033[91mERRO\033[0m ]  ';
-WARN = '[ \033[93mWARN\033[0m ]  ';
-INFO = '[ \033[94mINFO\033[0m ]  ';
-SUCC = '[ \033[32mOK\033[0m ]    ';
+from . import INFO
+from . import SUCC
+from . import ERRO
 
 
 class URL:
-    """ Structure of an URL """
-
+    """ 
+    Structure of an URL 
+    """
     def __init__(self, val=''):
-        """ Constructor of an URL """
+        """ 
+        Constructor of an URL 
+        """
         self._val = val;
 
     @property
     def value(self):
-        """ Return the value of the URL """
+        """ 
+        Return the value of the URL 
+        """
         if self._val == '#':
             return '#';
         else:
@@ -27,7 +28,9 @@ class URL:
 
     @property
     def isempty(self):
-        """ Return True if the URL is empty """
+        """
+        Return True if the URL is empty.
+        """
         return True if self._val else False;
 
     def __str__(self):
@@ -36,10 +39,13 @@ class URL:
 
 
 class WebPage(bs4.BeautifulSoup):
-    """ Structure and features of WEB page """
-
+    """ 
+    Structure and features of WEB page.
+    """
     def __init__(self, url: URL, content: str, **kwargs):
-        """ Constructor of a web page """
+        """ 
+        Constructor of a web page
+        """
         super(WebPage, self).__init__(content, 'html.parser', **kwargs);
         self._murl    = url;
         self._content = content;
@@ -80,13 +86,16 @@ class WebPage(bs4.BeautifulSoup):
         return text;
 
     def __str__(self):
-        """ Function of representation of a WEB page in string. """
+        """
+        Function of representation of a WEB page in string.
+        """
         return self._content;
 
 
 class Navigation(th.Thread):
-    """ Navigation thread definition """
-
+    """
+    Navigation thread definition.
+    """
     def __init__(self, *args, levn=0, **kwargs):
         """ Constructor of a navigation thread. """
         super(Navigation, self).__init__(*args, **kwargs);
@@ -97,12 +106,16 @@ class Navigation(th.Thread):
 
     @property
     def url(self):
-        """ Return the current URL of this nativation """
+        """
+        Return the current URL of this nativation.
+        """
         return self._curl;
 
     @url.setter
     def url(self, value: URL):
-        """ Set a value of current URL """
+        """
+        Set a value of current URL.
+        """
         self._curl = value;
 
     @property
@@ -119,7 +132,9 @@ class Navigation(th.Thread):
 
     @property
     def webpages(self):
-        """ Return the dictionnary of web page indexed by URLs """
+        """
+        Return the dictionnary of web page indexed by URLs.
+        """
         return self._wps;
 
     def __call__(self, url: URL):
@@ -168,7 +183,9 @@ class Navigation(th.Thread):
             return 0;
 
     def run(self):
-        """ Redefining of run function of the Thread """
+        """
+        Redefining of run function of the Thread.
+        """
         self(self._curl);
 
 

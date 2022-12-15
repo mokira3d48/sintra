@@ -22,7 +22,7 @@ class KeywordExtraction(Processing):
 
     def run(self):
         """ 
-        Function of execution of the program
+        Function of execution of the program.
         """
         url_string = self._params.get('url', '');
         levelnav   = self._params.get('lev', 0);

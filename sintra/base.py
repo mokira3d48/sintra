@@ -49,8 +49,6 @@ def register(name=None):
             );
         name_defined = name if name else cls.__name__;
         PROCESSES[name_defined] = cls;
-        print(PROCESSES);
-        print("OK");
         return cls;
     return make_registration;
 
